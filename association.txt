@@ -1,0 +1,85 @@
+-- MySQL dump 10.16  Distrib 10.1.26-MariaDB, for debian-linux-gnu (x86_64)
+--
+-- Host: localhost    Database: association
+-- ------------------------------------------------------
+-- Server version	10.1.26-MariaDB-0+deb9u1
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `article`
+--
+
+DROP TABLE IF EXISTS `article`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `article` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `titre` varchar(100) DEFAULT NULL,
+  `date` date DEFAULT NULL,
+  `id_user` int(11) DEFAULT NULL,
+  `article` text,
+  PRIMARY KEY (`id`),
+  KEY `id_user` (`id_user`),
+  CONSTRAINT `article_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `article`
+--
+
+LOCK TABLES `article` WRITE;
+/*!40000 ALTER TABLE `article` DISABLE KEYS */;
+INSERT INTO `article` VALUES (1,'Une Xbox One S Fortnite bientôt annoncée ?','2019-05-09',1,'L\'un des journalistes du site Thurrott.com l\'avait annoncé il y a quelques mois : une Xbox One S aux couleurs de Fortnite est en cours de développement. Cette rumeur enfle un peu plus aujourd\'hui avec la publication par WinFuture d\'images de ce pack. Nous devrions donc y retrouver une console recouverte d\'un dégradé violet, ainsi qu\'un pass pour accéder à un skin Dark Vertex et 2 000 V-Bucks à dépenser dans la boutique du jeu. Evidemment, il faudra attendre une confirmation officielle de la part de Microsoft qui présentera ses nouveautés lors d\'une conférence datée au 9 juin à 22h (heure française).'),(2,'Square Enix présentera un nouveau Dragon Quest pour smartphones le 3 juin','2019-05-10',2,'Il y a du nouveau en approche pour la licence Dragon Quest, et nos appareils mobiles sont concernés. Square Enix donne rendez-vous aux fans de la licence le 3 juin prochain pour une annonce.\r\n\r\nIl faudra se lever tôt pour y assister puisqu\'elle se fera en direct le lundi 3 juin à 5 heures du matin, sur YouTube et NicoNico. Le communiqué, relayé par Gematsu, indique que le titre sera une nouvelle expérience Dragon Quest jamais vue auparavant. Yuji Horii, principal scénariste et créateur de la licence, sera présent pour nous dévoiler tout cela. Il est fort possible que ce jeu pour smartphones ait un lien avec \"l\'annonce surprenante\" teasée la semaine dernière et qui sera évoquée dans les pages du Weekly Shonen Jump du 10 juin.');
+/*!40000 ALTER TABLE `article` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user`
+--
+
+DROP TABLE IF EXISTS `user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user` (
+  `id` int(5) NOT NULL AUTO_INCREMENT,
+  `nom` varchar(30) NOT NULL,
+  `prenom` varchar(30) NOT NULL,
+  `datenaissance` date DEFAULT NULL,
+  `login` varchar(10) NOT NULL,
+  `password` varchar(10) NOT NULL,
+  `email` varchar(60) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user`
+--
+
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES (1,'Regragui','Mehdi','1994-04-07','Ridem','123','m@gmail.com'),(2,'Test','Testo','2000-01-01','Testi','Test1','t@gmail.com'),(3,'Do','Lo','2000-01-01','a','a','a@gmail.com'),(4,'bob','bob','2000-01-01','b','b','b');
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2019-05-28 13:59:05
